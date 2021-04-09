@@ -2,9 +2,8 @@ package com.blog.genrr.blog.blogWork.controller;
 
 
 import com.blog.genrr.blog.blogWork.service.IPapersService;
-import com.blog.genrr.blog.blogWork.utils.ResponseData;
+import com.blog.genrr.blog.blogWork.dto.ResponseData;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

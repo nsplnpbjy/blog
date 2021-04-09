@@ -1,4 +1,4 @@
-package com.blog.genrr.blog.blogWork.utils;
+package com.blog.genrr.blog.blogWork.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
