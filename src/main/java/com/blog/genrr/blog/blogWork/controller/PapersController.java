@@ -3,6 +3,7 @@ package com.blog.genrr.blog.blogWork.controller;
 
 import com.blog.genrr.blog.blogWork.service.IPapersService;
 import com.blog.genrr.blog.blogWork.utils.ResponseData;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class PapersController {
     IPapersService iPapersService;
 
     @GetMapping("/get")
+    @SneakyThrows
     public ResponseData getPaper(@RequestParam("current") long current, @RequestParam("offset")int offset){
         return ResponseData.good(iPapersService.getPapers(current,offset));
     }

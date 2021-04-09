@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.blog.genrr.blog.blogWork.entity.Papers;
+import com.blog.genrr.blog.blogWork.exceptionType.NonSearchResultException;
 import com.blog.genrr.blog.blogWork.mapper.PapersMapper;
 import com.blog.genrr.blog.blogWork.service.IPapersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,14 +34,23 @@ public class PapersServiceImpl extends ServiceImpl<PapersMapper, Papers> impleme
     @Resource
     PapersMapper papersMapper;
 
+    @SneakyThrows
     @Override
-    public IPage getPapers(long current,int offset) {
-        return papersMapper.selectPage(new Page<>(current,offset),new LambdaQueryWrapper<>());
+    public IPage getPapers(long current,int offset)  {
+        IPage iPage = papersMapper.selectPage(new Page<>(current,offset),new LambdaQueryWrapper<>());
+        if (iPage.getRecords().isEmpty()){
+            throw new NonSearchResultException("non search result",400);
+        }
+        return iPage;
     }
 
     @Override
+    @SneakyThrows
     public IPage searchPapers(String searchVal) {
         IPage iPage = papersMapper.selectPage(new Page<>(0,200),new LambdaQueryWrapper<Papers>().like(Papers::getName,searchVal));
+        if (iPage.getRecords().isEmpty()){
+            throw new NonSearchResultException("non search result",400);
+        }
         return iPage;
     }
 }
