@@ -21,7 +21,7 @@ public class ResponseData implements Serializable {
     }
 
     public static ResponseData bad(Object data){
-        return new ResponseData(400,"ok",data);
+        return new ResponseData(400,"error",data);
     }
 
 }
