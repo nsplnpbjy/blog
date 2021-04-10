@@ -8,21 +8,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import sun.invoke.empty.Empty;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author nsplnpbjy
  */
 @Slf4j
 public class PaperGetterUtil {
-
-    static Set<String> oneUrlSet = new HashSet<String>();
-    static Set<String> twoUrlSet = new HashSet<String>();
 
     public static void saver(BaseMapper baseMapper,String paperName,String html){
         Papers papers = new Papers(paperName,html);

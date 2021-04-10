@@ -4,18 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.genrr.blog.blogWork.entity.Papers;
 import com.blog.genrr.blog.blogWork.exceptionType.NonSearchResultException;
 import com.blog.genrr.blog.blogWork.mapper.PapersMapper;
 import com.blog.genrr.blog.blogWork.service.IPapersService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Random;
 
 /**
  * <p>
@@ -27,9 +24,6 @@ import java.util.Random;
  */
 @Service
 public class PapersServiceImpl extends ServiceImpl<PapersMapper, Papers> implements IPapersService {
-
-    @Resource
-    PaginationInnerInterceptor paginationInnerInterceptor;
 
     @Resource
     PapersMapper papersMapper;
