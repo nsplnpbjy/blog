@@ -26,7 +26,7 @@ public class PaperGetterUtil {
 
     public static void saver(BaseMapper baseMapper,String paperName,String html){
         Papers papers = new Papers(paperName,html);
-        if (baseMapper.selectOne(new LambdaQueryWrapper<Papers>().eq(Papers::getName,paperName)).equals(null)){
+        if (baseMapper.selectOne(new LambdaQueryWrapper<Papers>().eq(Papers::getName,paperName))==null){
             baseMapper.insert(papers);
         }
         else {
