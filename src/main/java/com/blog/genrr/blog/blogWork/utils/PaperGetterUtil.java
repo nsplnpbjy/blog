@@ -34,10 +34,10 @@ public class PaperGetterUtil {
         }
     }
 
-    public static void marxEngels(BaseMapper baseMapper){
+    public static void paperGetter(BaseMapper baseMapper,String url){
         Document document = null;
         try{
-            document = Jsoup.connect("https://www.marxists.org/chinese/marx-engels/index.htm").get();
+            document = Jsoup.connect(url).get();
         } catch (Exception e) {
             log.warn("主站连接失败");
             return;
@@ -46,9 +46,10 @@ public class PaperGetterUtil {
         Element innerDiv = div.select("div").first();
         Element table = innerDiv.selectFirst("table");
         Elements as = table.select("a[href]");
+        String href = url.substring(0,url.lastIndexOf('/')+1);
         for (Element a :
                 as) {
-                String nextHref = "https://www.marxists.org/chinese/marx-engels/"+a.attr("href");
+                String nextHref = href+a.attr("href");
                 Document innerDocument = null;
                 try{
                     innerDocument = Jsoup.connect(nextHref).get();
