@@ -13,4 +13,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class PaperUrlProperties {
     private String marxUrl;
     private String leninUrl;
+    private String maoUrl;
 }

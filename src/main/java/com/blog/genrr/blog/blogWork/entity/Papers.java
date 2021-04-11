@@ -26,9 +26,12 @@ public class Papers implements Serializable {
 
     private String inside;
 
-    public Papers(String name,String inside){
+    private String auth;
+
+    public Papers(String name,String inside,String auth){
         this.setName(name);
         this.setInside(inside);
+        this.setAuth(auth);
     }
 
 }

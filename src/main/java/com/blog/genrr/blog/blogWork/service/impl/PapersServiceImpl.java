@@ -41,7 +41,7 @@ public class PapersServiceImpl extends ServiceImpl<PapersMapper, Papers> impleme
     @Override
     @SneakyThrows
     public IPage searchPapers(String searchVal) {
-        IPage iPage = papersMapper.selectPage(new Page<>(0,200),new LambdaQueryWrapper<Papers>().like(Papers::getName,searchVal));
+        IPage iPage = papersMapper.selectPage(new Page<>(0,200),new LambdaQueryWrapper<Papers>().like(Papers::getName,searchVal).or().like(Papers::getAuth,searchVal));
         if (iPage.getRecords().isEmpty()){
             throw new NonSearchResultException("non search result",400);
         }

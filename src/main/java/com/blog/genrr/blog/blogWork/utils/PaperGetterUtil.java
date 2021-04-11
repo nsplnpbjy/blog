@@ -15,9 +15,9 @@ import org.jsoup.select.Elements;
 @Slf4j
 public class PaperGetterUtil {
 
-    public static void saver(BaseMapper baseMapper,String paperName,String html){
-        Papers papers = new Papers(paperName,html);
-        if (baseMapper.selectOne(new LambdaQueryWrapper<Papers>().eq(Papers::getName,paperName))==null){
+    public static void saver(BaseMapper baseMapper,String paperName,String html,String auth){
+        Papers papers = new Papers(paperName,html,auth);
+        if (baseMapper.selectOne(new LambdaQueryWrapper<Papers>().eq(Papers::getName,paperName).and(wrapper->wrapper.eq(Papers::getAuth,auth)))==null){
             baseMapper.insert(papers);
         }
         else {
@@ -25,7 +25,8 @@ public class PaperGetterUtil {
         }
     }
 
-    public static void paperGetter(BaseMapper baseMapper,String url){
+    //马列通用（有文集网页）
+    public static void paperGetter(BaseMapper baseMapper,String url,String auth){
         Document document = null;
         try{
             document = Jsoup.connect(url).get();
@@ -74,11 +75,14 @@ public class PaperGetterUtil {
                     log.info("图片地址已修改为: "+img.attr("src"));
                 }
                 log.info("正在下载:"+paperName);
-                PaperGetterUtil.saver(baseMapper,paperName, paperDoc.html());
+                PaperGetterUtil.saver(baseMapper,paperName, paperDoc.html(),auth);
             }
 
         }
 
     }
 
+    //无文集网页通用
+    //待编写
+    //
 }

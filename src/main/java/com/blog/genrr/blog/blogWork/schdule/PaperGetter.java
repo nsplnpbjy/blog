@@ -29,13 +29,23 @@ public class PaperGetter {
 
     @Async
     @Scheduled(initialDelay = 1000,fixedRate = 2678400000L)
-    public void getPaperOne(){
-        PaperGetterUtil.paperGetter(papersMapper,paperUrlProperties.getMarxUrl());
+    public void getPaperOfMarx(){
+        if (paperUrlProperties.getMarxUrl()==null) {
+            log.warn("马克思著作网址为空");
+            return;
+        }
+        PaperGetterUtil.paperGetter(papersMapper,paperUrlProperties.getMarxUrl(),"马克思/恩格斯");
     }
 
     @Async
     @Scheduled(initialDelay = 1000,fixedRate = 2678400000L)
-    public void getPaperTwo(){
-        PaperGetterUtil.paperGetter(papersMapper,paperUrlProperties.getLeninUrl());
+    public void getPaperOfLenin(){
+        if (paperUrlProperties.getLeninUrl()==null) {
+            log.warn("列宁著作网址为空");
+            return;
+        }
+        PaperGetterUtil.paperGetter(papersMapper,paperUrlProperties.getLeninUrl(),"列宁");
     }
+
+
 }
